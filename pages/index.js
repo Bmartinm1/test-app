@@ -1,10 +1,21 @@
-// test-app.com/
+import Link from 'next/link';
+import { Fragment } from 'react';
 
 const LandingPage = () => {
   return (
-		<div>
-			<h1>Hello from the landing page!</h1>
-		</div>
+		<Fragment>
+			<ul>
+				<li>
+					<Link href='/login'>Login</Link>
+				</li>
+				<li>
+					<Link href='/enlist'>Enlist</Link>
+				</li>
+				<li>
+					<Link href='/events'>Events</Link>
+				</li>
+			</ul>
+		</Fragment>
 	);
 }
 

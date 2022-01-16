@@ -2,6 +2,5 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/enlist": "pages/enlist.js",
-  "/personnel": "pages/personnel.js"
+  "/": "pages/index.js"
 }
