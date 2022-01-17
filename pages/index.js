@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { MongoClient } from 'mongodb';
+import Head from 'next/head'
 
 import EventList from '../components/events/EventList';
 
@@ -7,12 +8,13 @@ const LandingPage = (props) => {
 
   return (
 		<>
+      <Head>
+        <title>Test-app home</title>
+      </Head>
       <div>
         <h1>Hooman wants you to join the Bit Force!</h1>
       </div>
-      <div>
         <EventList events={props.events} />
-      </div>
 		</>
 	);
 }
