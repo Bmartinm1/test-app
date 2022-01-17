@@ -1,9 +1,11 @@
+import NewEventForm from '../../../components/events/NewEventForm'
+
 const addEventPage = () => {
-	return (
-		<div>
-			<h1>Hello from the add event page!</h1>
-		</div>
-	);
+  function addEventHandler(enteredEventData) {
+    console.log(enteredEventData)
+  }
+
+  return <NewEventForm onAddEvent={addEventHandler} />
 };
 
 export default addEventPage;
