@@ -1,46 +1,63 @@
+import { MongoClient, ObjectId } from 'mongodb';
+
 import EventDetail from '../../../components/events/EventDetail'
 
-const EventDetails = () => {
+const EventDetails = (props) => {
   return (
 		<EventDetail
-			image='https://cdn1.epicgames.com/ue/product/Screenshot/RobotScreen04-1920x1080-d102d0e4e88d4c00d2baea3c887be589.jpg?resize=1&w=1920'
-			title='The first event'
-			description='This is the first ever event!'
+			image={props.eventData.image}
+			title={props.eventData.title}
+			address={props.eventData.address}
+			description={props.eventData.description}
 		/>
 	);
 }
 
 export async function getStaticPaths() {
+  const client = await MongoClient.connect(
+		'mongodb+srv://ben_m_squared:Thetrinity1@cluster0.fwv4v.mongodb.net/eventsDatabase?retryWrites=true&w=majority'
+	);
+	const db = client.db();
+
+	const eventsCollection = db.collection('events');
+
+  const events = await eventsCollection.find({}, { _id: 1 }).toArray();
+
+  client.close();
+
   return {
-    fallback: false,
-		paths: [
-			{
-				params: {
-					eventId: 'ev1',
-				},
-			},
-			{
-				params: {
-					eventId: 'ev2',
-				},
-			},
-		],
+    fallback: true,
+		paths: events.map(event => ({ 
+      params: {eventId: event._id.toString()}
+    })),
 	};
 }
 
 export async function getStaticProps(context) {
-  // fetch event data
 
   const eventId = context.params.eventId;
-  console.log(eventId);
+
+  const client = await MongoClient.connect(
+    'mongodb+srv://ben_m_squared:Thetrinity1@cluster0.fwv4v.mongodb.net/eventsDatabase?retryWrites=true&w=majority'
+  );
+  const db = client.db();
+
+  const eventsCollection = db.collection('events');
+
+  const selectedEvent = await eventsCollection.findOne({_id: ObjectId(eventId),
+  });
+
+  client.close();
 
   return {
 		props: {
-			image:
-				'https://cdn1.epicgames.com/ue/product/Screenshot/RobotScreen04-1920x1080-d102d0e4e88d4c00d2baea3c887be589.jpg?resize=1&w=1920',
-			id: eventId,
-			title: 'first',
-      description: 'this is the first meetup'
+			eventData: {
+        id: selectedEvent._id.toString(),
+        title: selectedEvent.title,
+        address: selectedEvent.address,
+        image: selectedEvent.image,
+        description: selectedEvent.description
+      },
 		},
 	};
 }
