@@ -1,6 +1,7 @@
 import EventList from '../components/events/EventList';
+
 import Link from 'next/link';
-import { Fragment } from 'react';
+import { useEffect, useState } from 'react';
 
 const DUMMY_EVENTS = [
 	{
@@ -30,13 +31,19 @@ const DUMMY_EVENTS = [
 ];
 
 const LandingPage = () => {
+  const [loadedEvents, setLoadedEvents] = useState([]);
+
+  useEffect(() => {
+    setLoadedEvents(DUMMY_EVENTS)
+  }, []);
+
   return (
 		<>
       <div>
         <h1>Hooman wants you to join the Bit Force!</h1>
       </div>
       <div>
-        <EventList events={DUMMY_EVENTS} />;
+        <EventList events={loadedEvents} />;
       </div>
 		</>
 	);
