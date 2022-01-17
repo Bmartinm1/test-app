@@ -37,7 +37,7 @@ const LandingPage = (props) => {
         <h1>Hooman wants you to join the Bit Force!</h1>
       </div>
       <div>
-        <EventList events={props.events} />;
+        <EventList events={props.events} />
       </div>
 		</>
 	);
