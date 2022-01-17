@@ -1,7 +1,7 @@
 import '../styles/globals.css';
 
-function Test-app({ Component, pageProps }) {
+function TestApp({ Component, pageProps }) {
 	return <Component {...pageProps} />;
 }
 
-export default Test-app;
+export default TestApp;
