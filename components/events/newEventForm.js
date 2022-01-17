@@ -1,9 +1,9 @@
 import { useRef } from 'react';
 
 import Card from '../ui/Card';
-import classes from './newEventForm.module.css';
+import classes from './NewEventForm.module.css';
 
-function newEventForm(props) {
+function NewEventForm(props) {
 	const titleInputRef = useRef();
 	const imageInputRef = useRef();
 	const addressInputRef = useRef();
@@ -59,4 +59,4 @@ function newEventForm(props) {
 	);
 }
 
-export default newEventForm;
+export default NewEventForm;

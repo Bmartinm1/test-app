@@ -1,7 +1,7 @@
 import Card from '../ui/Card';
-import classes from './eventItem.module.css';
+import classes from './EventItem.module.css';
 
-function eventItem(props) {
+function EventItem(props) {
 	return (
 		<li className={classes.item}>
 			<Card>
@@ -20,4 +20,4 @@ function eventItem(props) {
 	);
 }
 
-export default eventItem;
+export default EventItem;
