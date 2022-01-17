@@ -1,7 +1,6 @@
 import EventList from '../components/events/EventList';
 
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 
 const DUMMY_EVENTS = [
 	{
@@ -30,12 +29,7 @@ const DUMMY_EVENTS = [
 	},
 ];
 
-const LandingPage = () => {
-  const [loadedEvents, setLoadedEvents] = useState([]);
-
-  useEffect(() => {
-    setLoadedEvents(DUMMY_EVENTS)
-  }, []);
+const LandingPage = (props) => {
 
   return (
 		<>
@@ -43,10 +37,19 @@ const LandingPage = () => {
         <h1>Hooman wants you to join the Bit Force!</h1>
       </div>
       <div>
-        <EventList events={loadedEvents} />;
+        <EventList events={props.events} />;
       </div>
 		</>
 	);
+}
+
+export async function getStaticProps() {
+  return {
+		props: {
+      events: DUMMY_EVENTS
+    },
+    revalidate: 1
+	};
 }
 
 export default LandingPage;
