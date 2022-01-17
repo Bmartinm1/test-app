@@ -1,4 +1,3 @@
-import Layout from '../components/layout/Layout';
 import EventList from '../components/events/EventList';
 import Link from 'next/link';
 import { Fragment } from 'react';
@@ -33,14 +32,12 @@ const DUMMY_EVENTS = [
 const LandingPage = () => {
   return (
 		<>
-			<Layout>
-				<div>
-					<h1>Hooman wants you to join the Bit Force!</h1>
-				</div>
-				<div>
-					<EventList events={DUMMY_EVENTS} />;
-				</div>
-			</Layout>
+      <div>
+        <h1>Hooman wants you to join the Bit Force!</h1>
+      </div>
+      <div>
+        <EventList events={DUMMY_EVENTS} />;
+      </div>
 		</>
 	);
 }
